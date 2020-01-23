@@ -1,22 +1,39 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import PortfolioLayout from "../views/PortfolioLayout";
+import PortfolioVue from "../views/PortfolioVue";
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: Home
+    name: 'Home',
+    component: Home,
+    meta: {
+      title: 'Сайт-портфолио начинающего веб-разработчика',
+    }
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/portfolio-layout',
+    name: 'portfolio-layout',
+    component: PortfolioLayout,
+    meta: {
+      title: 'Примеры верстки',
+    }
+  },
+  {
+    path: '/portfolio-vue',
+    name: 'portfolio-vue',
+    component: PortfolioVue,
+    meta: {
+      title: 'Примеры SPA Vue приложений',
+    }
+  },
+  {
+    path: '/*',
+    redirect: { name: 'Home' }
   }
 ]
 
@@ -24,6 +41,11 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title
+  next()
 })
 
 export default router

@@ -1,32 +1,46 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <Loader v-if="loading"/>
+    <div class="content" v-else>
+      <Navbar v-if="['Home','portfolio-layout'].indexOf($route.name) > -1"/>
+        <router-view />
+        <div><a class="upbtn" v-on:click="scrollUp"><span></span></a></div>
+      <Footer v-if="['Home','portfolio-layout'].indexOf($route.name) > -1 "/>
     </div>
-    <router-view/>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
-#nav {
-  padding: 30px;
+<script>
+  import Navbar from './components/Navbar'
+  import Footer from './components/Footer'
+  import Loader from "./components/Loader";
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+  export default {
+    components: {
+      Navbar,
+      Footer,
+      Loader
+    },
+    data: () => ({
+      loading: true
+    }),
+    methods: {
+      scrollUp() {
+        window.scroll(0, 0);
+      }
+    },
+    created() {
+      setTimeout(() => this.loading = false, 1000)
     }
   }
-}
+
+</script>
+
+<style >
+  @import "~bootstrap/dist/css/bootstrap.min.css";
+  @import "~bootstrap-vue/dist/bootstrap-vue.min.css";
+  @import "assets/style.min.css";
+  @import "assets/styles-portfolio-layout.css";
+  @import "assets/media.css";
 </style>

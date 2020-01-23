@@ -3,8 +3,19 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
+import Vuelidate from 'vuelidate'
+import 'jquery'
+import 'bootstrap'
+import BootstrapVue from 'bootstrap-vue'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
 
 Vue.config.productionTip = false
+
+Vue.use(Vuelidate)
+Vue.use(BootstrapVue)
+Vue.use(VueAxios, axios)
 
 new Vue({
   router,
