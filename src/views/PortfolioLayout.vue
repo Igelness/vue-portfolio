@@ -8,7 +8,7 @@
               <h1 class="portfolio__title">Примеры статической верстки</h1>
             </div>
           </div>
-          <div class="col-md-12 col-lg-6 col-xl-4" v-for="item of portfolioItems">
+          <div class="col-md-12 col-lg-6 col-xl-4" v-for="item of portfolioItems" :key="item.title">
             <div class="portfolio__item">
               <div class="portfolio__item-content">
                 <img class="portfolio__image"  :src=item.imageSrc :alt=item.title>

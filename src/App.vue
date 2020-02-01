@@ -2,10 +2,14 @@
   <div id="app">
     <Loader v-if="loading"/>
     <div class="content" v-else>
-      <Navbar v-if="['Home','portfolio-layout'].indexOf($route.name) > -1"/>
+      <Navbar v-if="['Home','portfolio-layout', 'portfolio-vue'].indexOf($route.name) > -1"/>
         <router-view />
-        <div><a class="upbtn" v-on:click="scrollUp"><span></span></a></div>
-      <Footer v-if="['Home','portfolio-layout'].indexOf($route.name) > -1 "/>
+        <div>
+          <a class="upbtn" v-on:click="scrollUp">
+            <span></span>
+          </a>
+        </div>
+      <Footer v-if="['Home','portfolio-layout', 'portfolio-vue'].indexOf($route.name) > -1 "/>
     </div>
   </div>
 </template>
@@ -23,15 +27,15 @@
       Loader
     },
     data: () => ({
-      loading: true
+      loading: true,
     }),
     methods: {
       scrollUp() {
         window.scroll(0, 0);
-      }
+      },
     },
     created() {
-      setTimeout(() => this.loading = false, 1000)
+      setTimeout(() => this.loading = false, 1000);
     }
   }
 

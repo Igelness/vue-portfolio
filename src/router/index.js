@@ -28,7 +28,7 @@ const routes = [
     name: 'portfolio-vue',
     component: PortfolioVue,
     meta: {
-      title: 'Примеры SPA Vue приложений',
+      title: 'Примеры SPA Vue',
     }
   },
   {
